@@ -13,5 +13,7 @@ public class HashSetClass {
         chemicals.add("Titanium");
         System.out.println(chemicals.contains("Oxygen"));
         System.out.println(chemicals);
+        System.out.println(chemicals.isEmpty());
+        System.out.println(chemicals.hashCode());
     }
 }
