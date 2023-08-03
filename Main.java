@@ -2,26 +2,24 @@ import LeetCode.*;
 
 public class Main {
     public static void main(String[] args) {
-        /*
-         * Plus One
-         * int[] digit1 = { 1, 2, 3 };
-         * int[] digit2 = { 1, 2, 9 };
-         * int[] digit3 = { 9, 9, 9 };
-         * int[] answer = PlusOne.digitOne(digit1);
-         * for (int i : answer) {
-         * System.out.print(i);
-         * }
-         * System.out.println();
-         * answer = PlusOne.digitOne(digit2);
-         * for (int i : answer) {
-         * System.out.print(i);
-         * }
-         * System.out.println();
-         * answer = PlusOne.digitOne(digit3);
-         * for (int i : answer) {
-         * System.out.print(i);
-         * }
-         */
+
+        int[] digit1 = { 1, 2, 3 };
+        int[] digit2 = { 1, 2, 9 };
+        int[] digit3 = { 9, 9, 9 };
+        int[] answer = PlusOne.digitOne(digit1);
+        for (int i : answer) {
+            System.out.print(i);
+        }
+        System.out.println();
+        answer = PlusOne.digitOne(digit2);
+        for (int i : answer) {
+            System.out.print(i);
+        }
+        System.out.println();
+        answer = PlusOne.digitOne(digit3);
+        for (int i : answer) {
+            System.out.print(i);
+        }
 
         /*
          * Longest Prefix Character
@@ -35,11 +33,20 @@ public class Main {
 
         // System.out.println(PascalTriangle.generate(5));
 
-        int[] nums = { 1, 1, 2 };
-        int[] nums2 = {0,0,1,1,1,2,2,3,3,4};
-        int ans = RemoveDuplicatesFromSortedArray.removeDuplicates(nums);
-        System.out.println(ans);
-        ans = RemoveDuplicatesFromSortedArray.removeDuplicates(nums2);
-        System.out.println(ans);
+        // int[] nums = { 1, 1, 2 };
+        // int[] nums2 = {0,0,1,1,1,2,2,3,3,4};
+        // int ans = RemoveDuplicatesFromSortedArray.removeDuplicates(nums);
+        // System.out.println(ans);
+        // ans = RemoveDuplicatesFromSortedArray.removeDuplicates(nums2);
+        // System.out.println(ans);
+
+        // String haystack = "leetcode";
+        // String needle = "code";
+        // System.out.println(FindIndexOfFirstOccurenceInString.strstr(haystack,
+        // needle));
+        // haystack = "sadbutsad";
+        // needle = "sad";
+        // System.out.println(FindIndexOfFirstOccurenceInString.strstr(haystack,
+        // needle));
     }
 }
