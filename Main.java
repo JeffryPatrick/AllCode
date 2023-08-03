@@ -23,16 +23,23 @@ public class Main {
          * }
          */
 
-        /* Longest Prefix Character
+        /*
+         * Longest Prefix Character
          * String[] strs = { "flower", "flow", "flight" };
-        String[] str1 = { "dog", "racecar", "car" };
-        String answer1 = LongestCommonPrefix.longestPrefix(strs);
-        String answer2 = LongestCommonPrefix.longestPrefix(str1);
-        System.out.println(answer1);
-        System.out.println(answer2);
+         * String[] str1 = { "dog", "racecar", "car" };
+         * String answer1 = LongestCommonPrefix.longestPrefix(strs);
+         * String answer2 = LongestCommonPrefix.longestPrefix(str1);
+         * System.out.println(answer1);
+         * System.out.println(answer2);
          */
-        
-        System.out.println(PascalTriangle.generate(5));
 
+        // System.out.println(PascalTriangle.generate(5));
+
+        int[] nums = { 1, 1, 2 };
+        int[] nums2 = {0,0,1,1,1,2,2,3,3,4};
+        int ans = RemoveDuplicatesFromSortedArray.removeDuplicates(nums);
+        System.out.println(ans);
+        ans = RemoveDuplicatesFromSortedArray.removeDuplicates(nums2);
+        System.out.println(ans);
     }
 }
