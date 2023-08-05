@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 import LeetCode.*;
 
@@ -93,7 +94,7 @@ public class Main {
         // int e = 8563 + Integer.parseInt(q);
         // System.out.println(e);
 
-        System.out.println();
+        // System.out.println();
 
         // int mat[][] = { { 6, 5, 4 }, { 1, 2, 5 }, { 7, 9, 7 } };
 
@@ -176,17 +177,42 @@ public class Main {
         // System.out.println();
         // }
 
-        int mat[][] = { { 8, 9, 10 }, { 11, 17, 13 }, { 9, 16, 17 } };
-        int min = 0, max = 0;
-        for (int i = 0; i < mat.length; i++) {
-            min = mat[i][0];
-            for (int j = i + 1; j < mat[i].length; j++) {
-                if (min > mat[i][j]) {
-                    min = mat[i][j];
-                }
+        // int[][] mat = { { 1, 10, 4, 2 }, { 9, 3, 8, 7 }, { 15, 16, 17, 12 } };
+        // List<Integer> ans = new LuckyNumberInMatrix().luckyNumbers(mat);
+        // System.out.println(ans);
+
+        // tring s = " fly me to the moon ";
+        // int count = 0;
+        // s = s.trim();
+        // for (int i = s.length() - 1; i >= 0; i--) {
+        // if (s.charAt(i) != ' ') {
+        // count += 1;
+
+        // }
+        // else {
+        // break;
+        // }
+        // }
+        // System.out.println(count);
+
+        int ar[] = { 1, 2, 4, 7 };
+        int target = 8;
+
+        int low = 0;
+        int high = ar.length - 1;
+        int mid = 0;
+        while (low <= high) {
+            mid = (low + high) / 2;
+
+            if (ar[mid] > target) {
+                high = mid - 1;
+            } else if (ar[mid] < target) {
+                low = mid + 1;
+            } else {
+                System.out.println(mid);
             }
         }
-        System.out.println(min);
+        System.out.println(low);
     }
 
     public static boolean pal(String s) {
