@@ -14,14 +14,13 @@ public class CallTaxiBookingSystem {
         System.out.println("Enter the Customer Id : ");
         customerId = s.nextInt();
         System.out.println("Enter Pickup Point (A - F) : ");
-        pickupPoint = s.nextLine().charAt(0);
+        pickupPoint = s.next().charAt(0);
         System.out.println("Enter the Drop Point (A - F) : ");
-        dropPoint = s.nextLine().charAt(0);
+        dropPoint = s.next().charAt(0);
         System.out.println("Enter the Pickup Time : ");
         pickupTime = s.nextInt();
         booking[bookingId] = new Booking(customerId, pickupPoint, dropPoint, pickupTime);
         availability = booking[bookingId].checkAvailability(taxi, taxiId);
-        s.close();
         return availability;
     }
 
@@ -74,8 +73,42 @@ public class CallTaxiBookingSystem {
                     System.out.println(
                             "Booking Id\nCustomer Id\nTaxi No\nPickupPoint\nDropPoint\nPickupTime\nDropTime\nEarnings");
                     for (int bookingid = 0; bookingid < bookingId; bookingid++) {
-                        
+                        System.out.format("d%-13d%-15d%-13d%-13s%-13s%-13d%-13d%-13d",
+                                bookingid, booking[bookingid].customerId, booking[bookingid].taxiNo,
+                                booking[bookingid].pickupPoint, booking[bookingid].dropPoint,
+                                booking[bookingid].pickupTime, booking[bookingid].dropTime,
+                                booking[bookingid].earning);
+                        System.out.println("");
                     }
+                    break;
+                case 3:
+                    for (int taxiid = 0; taxiid < taxiId; taxiid++) {
+                        int temp = 0;
+                        System.out.println("----------------------------------------------");
+                        System.out.format("%-10s%-10d%-10s%-10s", "TaxiNo : ", taxiid, "CurrentPosition : ",
+                                taxi[taxiid].currentPosition);
+                        System.out.println();
+                        System.out.println("______________________________________________");
+                        System.out.println("----------------------------------------------");
+                        for (int bookingid = 0; bookingid < bookingId; bookingid++) {
+                            if (booking[bookingid].taxiNo == taxiid) {
+                                if (temp == 0)
+                                    System.out.format("%-13d%-15d%-13d%-13s%-13s%-13d%-13d%-13d",
+                                            bookingid, booking[bookingid].customerId, booking[bookingid].taxiNo,
+                                            booking[bookingid].pickupPoint, booking[bookingid].dropPoint,
+                                            booking[bookingid].pickupTime, booking[bookingid].dropTime,
+                                            booking[bookingid].earning);
+                                temp = 1;
+                            }
+                        }
+                        System.out.format("%-10s%-10d", "TotalEarnings : ", taxi[taxiid].earning);
+                        System.out.println("");
+                    }
+                    break;
+                case 4:
+                    return;
+                default:
+                    System.out.println("Please Enter Valid option");
             }
         }
 

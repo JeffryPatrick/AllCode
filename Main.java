@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import LeetCode.*;
+import LeetCode.Strings.FirstUniqueCharInString;
+import LeetCode.Strings.FizzBuzz;
+import LeetCode.Strings.ReverseString;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,12 +29,14 @@ public class Main {
 
         /*
          * Longest Prefix Character
+         * 
          * String[] strs = { "flower", "flow", "flight" };
          * String[] str1 = { "dog", "racecar", "car" };
          * String answer1 = LongestCommonPrefix.longestPrefix(strs);
          * String answer2 = LongestCommonPrefix.longestPrefix(str1);
          * System.out.println(answer1);
          * System.out.println(answer2);
+         * 
          */
 
         // System.out.println(PascalTriangle.generate(5));
@@ -51,7 +56,6 @@ public class Main {
         // needle = "sad";
         // System.out.println(FindIndexOfFirstOccurenceInString.strstr(haystack,
         // needle));
-
 
         // TicTacToeGame.startGame();
 
@@ -171,14 +175,14 @@ public class Main {
         // int[] nums = { 0, 1, 0, 3, 12 };
         // MoveZeros.movezeros(nums);
 
-        int[] nums1 = { 9, 8, 7, 61, 4 };
-        int[] nums2 = { 4, 8, 9, 9, 4 };
-        int[] nums3 = IntersectionOfTwoArrays.intersect(nums1, nums2);
-        for (int x : nums3) {
-            System.out.println(x);
-        }
+        // int[] nums1 = { 9, 8, 7, 61, 4 };
+        // int[] nums2 = { 4, 8, 9, 9, 4 };
+        // int[] nums3 = IntersectionOfTwoArrays.intersect(nums1, nums2);
+        // for (int x : nums3) {
+        // System.out.println(x);
+        // }
 
-        // 0int mat[][] = { { 1, 2, 3, 4, 6 }, { 5, 3, 8, 1, 2 }, { 4, 6, 7, 5, 5 }, {
+        // int mat[][] = { { 1, 2, 3, 4, 6 }, { 5, 3, 8, 1, 2 }, { 4, 6, 7, 5, 5 }, {
         // 2, 4, 8, 9, 4 } };
         // int index[] = { 2, 0, 3, 4 };
         // int sum = 0;
@@ -240,17 +244,47 @@ public class Main {
         // int high = ar.length - 1;
         // int mid = 0;
         // while (low <= high) {
-        //     mid = (low + high) / 2;
+        // mid = (low + high) / 2;
 
-        //     if (ar[mid] > target) {
-        //         high = mid - 1;
-        //     } else if (ar[mid] < target) {
-        //         low = mid + 1;
-        //     } else {
-        //         System.out.println(mid);
-        //     }
+        // if (ar[mid] > target) {
+        // high = mid - 1;
+        // } else if (ar[mid] < target) {
+        // low = mid + 1;
+        // } else {
+        // System.out.println(mid);
+        // }
         // }
         // System.out.println(low);
+
+        /*
+         * first Unique Character
+         */
+        // String s = "leetcode";
+        // int i = FirstUniqueCharInString.firstUniqChar(s);
+        // System.out.println(i);
+
+        /*
+         * Reverse string
+         * 
+         * char[] s = { 'h', 'e', 'l', 'l', 'o' };
+         * char[] ans = ReverseString.reverseString(s);
+         * for (char c : ans) {
+         * System.out.println(c);
+         * }
+         * 
+         */
+
+        /*
+         * Fizz Buzz
+         * 
+         * List<String> answer = new ArrayList<>();
+         * answer = FizzBuzz.fizzBuzz(15);
+         * for (String string : answer) {
+         * System.out.println(string);
+         * }
+         * 
+         */
+
     }
 
     public static boolean pal(String s) {
