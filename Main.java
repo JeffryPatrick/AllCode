@@ -2,9 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import LeetCode.*;
-import LeetCode.Strings.FirstUniqueCharInString;
-import LeetCode.Strings.FizzBuzz;
-import LeetCode.Strings.ReverseString;
 
 public class Main {
     public static void main(String[] args) {
@@ -245,7 +242,6 @@ public class Main {
         // int mid = 0;
         // while (low <= high) {
         // mid = (low + high) / 2;
-
         // if (ar[mid] > target) {
         // high = mid - 1;
         // } else if (ar[mid] < target) {
@@ -287,6 +283,20 @@ public class Main {
 
         
 
+        // if (ar[mid] > target) {
+        // high = mid - 1;
+        // } else if (ar[mid] < target) {
+        // low = mid + 1;
+        // } else {
+        // System.out.println(mid);
+        // }
+        // }
+        // System.out.println(low);
+
+        String s = "A man, a plan, a canal: Panama";
+        s = s.toLowerCase();
+        String ans = "";
+        Character.isAlphabetic('d');  
     }
 
     public static boolean pal(String s) {
