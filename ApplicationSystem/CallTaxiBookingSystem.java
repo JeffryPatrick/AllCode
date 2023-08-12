@@ -1,188 +1,236 @@
 package ApplicationSystem;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
-public class CallTaxiBookingSystem {
+public class CallTaxiBookingSystem extends Booking {
 
     /*
-     * Implementation of Add Booking
+     * Implementation of main function
      */
-    public static int addBooking(Booking[] booking, int bookingId, Taxi[] taxi, int taxiId) {
-        int availability, customerId, pickupTime;
-        char pickupPoint, dropPoint;
+
+    public static void main(String[] args) {
+
+        System.out.println("-----Call Taxi Booking System-----");
         Scanner s = new Scanner(System.in);
-        System.out.println("Enter the Customer Id : ");
-        customerId = s.nextInt();
-        System.out.println("Enter Pickup Point (A - F) : ");
-        pickupPoint = s.next().charAt(0);
-        System.out.println("Enter the Drop Point (A - F) : ");
-        dropPoint = s.next().charAt(0);
-        System.out.println("Enter the Pickup Time : ");
-        pickupTime = s.nextInt();
-        booking[bookingId] = new Booking(customerId, pickupPoint, dropPoint, pickupTime);
-        availability = booking[bookingId].checkAvailability(taxi, taxiId);
-        return availability;
-    }
+        int noOfTaxis;
+        System.out.println("Enter the No of Taxis : ");
+        noOfTaxis = s.nextInt();
+        // create 4 taxis
+        List<Taxi> taxis = createTaxis(noOfTaxis);
 
-    /*
-     * Implementation of Calculation of Earnings
-     */
-    public static void calcEarnings(Booking[] booking, int bookingId, Taxi[] taxi, int taxiId, int pickupPoint,
-            int dropPoint) {
-        int earning;
-        earning = (((Math.abs(pickupPoint - dropPoint) * 15) - 5) * 10) + 100;
-        booking[bookingId].earning = earning;
-        taxi[taxiId].earning += earning;
-    }
+        int id = 1;
 
-    /*
-     * Implementation of UserInput
-     */
-    public static void userInput() {
-        Scanner s = new Scanner(System.in);
-        Taxi[] taxi = new Taxi[10];
-        int taxiId = 4, bookingId = 0;
-        Booking[] booking = new Booking[20];
-        taxi[0] = new Taxi();
-        taxi[1] = new Taxi();
-        taxi[2] = new Taxi();
-        taxi[3] = new Taxi();
-        int choice, availability;
         while (true) {
-            System.out.println("Call Taxi Booking System");
-            System.out.println("1. Booking");
-            System.out.println("2. Booking Details");
-            System.out.println("3. Taxi Details");
-            System.out.println("4. Exit");
-            System.out.println("Enter your Choice : ");
-            choice = s.nextInt();
+            System.out.println("---------------------------");
+            System.out.println("1. Book Taxi");
+            System.out.println("2. Print Taxi Details");
+            System.out.println("3. Exit");
+            System.out.println("---------------------------");
+            int choice = s.nextInt();
+
             switch (choice) {
                 case 1:
-                    availability = addBooking(booking, bookingId, taxi, taxiId);
-                    if (availability != -1) {
-                        System.out.println("Your booking is Successfull with taxi no : " + availability);
-                        booking[bookingId].dropTime();
-                        calcEarnings(booking, bookingId, taxi, taxiId, choice, availability);
-                        bookingId++;
-                    } else {
-                        System.out.println("No Taxi is Free for your Pickup Time!!");
-                        System.out.println("You may change your pickup time and try your booking");
+                    // Get details from customers
+                    int customerId = id;
+                    System.out.println("Enter Pickup Point : ");
+                    char pickupPoint = s.next().charAt(0);
+                    System.out.println("Enter Drop Point : ");
+                    char dropPoint = s.next().charAt(0);
+                    System.out.println("Enter Pickup Time : ");
+                    int pickupTime = s.nextInt();
+
+                    // check if pickup and drop point are valid
+                    if (pickupPoint < 'A' || dropPoint > 'F' || pickupPoint > 'F' || dropPoint < 'A') {
+                        System.out.println("Valid pickup and drop are A, B, C, D, E, F : ");
+                        return;
                     }
+
+                    // get all free taxis that can reach customer on or before pickup time
+                    List<Taxi> freeTaxis = getFreeTaxis(taxis, pickupTime, pickupPoint);
+
+                    // no free taxi means we cannot alloct, so Exit!
+                    if (freeTaxis.size() == 0) {
+                        System.out.println("Sorry, No Taxi is Alloted. Exiting");
+                        return;
+                    }
+
+                    // sort taxis based on earnings
+                    Collections.sort(freeTaxis, (a, b) -> a.totalEarnings - b.totalEarnings);
+
+                    // get free Taxi nearest to us
+                    bookTaxi(customerId, pickupPoint, dropPoint, pickupTime, freeTaxis);
+                    id++;
                     break;
                 case 2:
-                    System.out.println(
-                            "Booking Id\nCustomer Id\nTaxi No\nPickupPoint\nDropPoint\nPickupTime\nDropTime\nEarnings");
-                    for (int bookingid = 0; bookingid < bookingId; bookingid++) {
-                        System.out.format("d%-13d%-15d%-13d%-13s%-13s%-13d%-13d%-13d",
-                                bookingid, booking[bookingid].customerId, booking[bookingid].taxiNo,
-                                booking[bookingid].pickupPoint, booking[bookingid].dropPoint,
-                                booking[bookingid].pickupTime, booking[bookingid].dropTime,
-                                booking[bookingid].earning);
-                        System.out.println("");
+                    for (Taxi taxi : taxis) {
+                        taxi.printDetails();
                     }
                     break;
                 case 3:
-                    for (int taxiid = 0; taxiid < taxiId; taxiid++) {
-                        int temp = 0;
-                        System.out.println("----------------------------------------------");
-                        System.out.format("%-10s%-10d%-10s%-10s", "TaxiNo : ", taxiid, "CurrentPosition : ",
-                                taxi[taxiid].currentPosition);
-                        System.out.println();
-                        System.out.println("______________________________________________");
-                        System.out.println("----------------------------------------------");
-                        for (int bookingid = 0; bookingid < bookingId; bookingid++) {
-                            if (booking[bookingid].taxiNo == taxiid) {
-                                if (temp == 0)
-                                    System.out.format("%-13d%-15d%-13d%-13s%-13s%-13d%-13d%-13d",
-                                            bookingid, booking[bookingid].customerId, booking[bookingid].taxiNo,
-                                            booking[bookingid].pickupPoint, booking[bookingid].dropPoint,
-                                            booking[bookingid].pickupTime, booking[bookingid].dropTime,
-                                            booking[bookingid].earning);
-                                temp = 1;
-                            }
-                        }
-                        System.out.format("%-10s%-10d", "TotalEarnings : ", taxi[taxiid].earning);
-                        System.out.println("");
-                    }
-                    break;
-                case 4:
                     return;
                 default:
-                    System.out.println("Please Enter Valid option");
+                    break;
             }
         }
-
     }
 
-    public static void main(String[] args) {
-        userInput();
-    }
 }
 
 /*
  * Implementation of Taxi class
  */
 class Taxi {
-    char currentPosition;
-    int earning, departureTime;
+    static int taxiCount = 0; // taxi number
+    int id;
+    boolean booked; // taxi booked or not
+    char currentSpot; // where taxi is now
+    int freeTime; // when taxi becomes free
+    int totalEarnings; // total earnings of taxi
+    List<String> trips; // all details of all trips by this taxi
 
     public Taxi() {
-        currentPosition = 'a';
+        booked = false;
+        currentSpot = 'A'; // starting point
+        freeTime = 6; // example 6 AM
+        totalEarnings = 0;
+        trips = new ArrayList<String>();
+        taxiCount += 1;
+        id = taxiCount;
     }
 
-    public boolean isTaxiFree(int pickupTime) {
-        if (departureTime < pickupTime) {
-            return false;
+    /*
+     * Implementation of setDetails() function
+     */
+
+    public void setDetails(boolean booked, char currentSpot, int freeTime, int totalEarnings, String tripDetails) {
+        this.booked = booked;
+        this.currentSpot = currentSpot;
+        this.freeTime = freeTime;
+        this.totalEarnings = totalEarnings;
+        this.trips.add(tripDetails);
+    }
+
+    /*
+     * Implementation of printDetails() function
+     */
+
+    public void printDetails() {
+        // print all trip details
+        System.out.println("-----------------------------------------------------------------------------------");
+        System.out.println("Taxi - " + this.id + " Total Earnings - " + this.totalEarnings);
+        System.out.println("TaxiId | BookingId | CustomerId | From | To | PickupTime | DropTime | Amount |");
+        for (String trip : trips) {
+            System.out.println("-----------------------------------------------------------------------------------");
+            System.out.println(id + "      | " + trip);
         }
-        return true;
-    }
-
-    public void departureTime(char pickupPoint, char dropPoint, int pickupTime) {
-        departureTime = pickupTime + Math.abs(pickupTime - dropPoint);
+        System.out.println("-----------------------------------------------------------------------------------");
     }
 }
 
 /*
  * Implementation of Booking class
  */
-
 class Booking {
-    int customerId, pickupTime, dropTime, taxiNo, earning;
-    char pickupPoint, dropPoint;
 
-    public Booking(int customerId, char pickupPoint, char dropPoint, int pickupTime) {
-        this.customerId = customerId;
-        this.pickupPoint = pickupPoint;
-        this.dropPoint = dropPoint;
-        this.pickupTime = pickupTime;
-    }
+    /*
+     * Implementation of bookTaxi() function
+     */
+    public static void bookTaxi(int customerId, char pickupPoint, char dropPoint, int pickupTime,
+            List<Taxi> freeTaxis) {
+        // to find the nearest distance
+        int min = 999;
 
-    public void dropTime() {
-        this.dropTime = pickupTime + Math.abs(pickupPoint - dropPoint);
-    }
+        // distance between pickup and drop
+        int distanceBetweenPickupAndDrop = 0;
 
-    public int checkAvailability(Taxi[] taxi, int taxiCount) {
-        int taxiId, taxiId2 = 0, shortestDistance = 6;
-        for (taxiId = 0; taxiId < taxiCount; taxiId++) {
-            if (taxi[taxiId].isTaxiFree(pickupTime)) {
-                if (Math.abs(taxi[taxiId].currentPosition - pickupPoint) < shortestDistance) {
-                    taxiId2 = taxiId;
-                }
-                if (Math.abs(taxi[taxiId].currentPosition - pickupPoint) == shortestDistance) {
-                    if (taxi[taxiId].earning < taxi[taxiId2].earning) {
-                        taxiId2 = taxiId;
-                    }
+        // this trip earning
+        int earning = 0;
 
-                }
+        // when taxi will be free next
+        int nextFreeTime = 0;
+
+        // when taxi is after trip is over
+        char nextSpot = 'Z';
+
+        // booked Taxi
+        Taxi bookedTaxi = null;
+
+        // all details of current trip as string
+        String tripDetail = "";
+
+        for (Taxi t : freeTaxis) {
+            int distanceBetweenCustomerAndTaxi = Math.abs((t.currentSpot - '0') - (pickupPoint - '0')) * 15;
+            if (distanceBetweenCustomerAndTaxi < min) {
+                bookedTaxi = t;
+
+                // distance between pickup and drop = (drop - pickup) * 15KM
+                distanceBetweenPickupAndDrop = Math.abs((dropPoint - '0') - (pickupPoint - '0')) * 15;
+
+                // trip earning = 100 + (distanceBetweenPickupAndDrop - 5) * 10
+                earning = (distanceBetweenPickupAndDrop - 5) * 10 + 100;
+
+                // drop time calculation
+                int dropTime = pickupTime + distanceBetweenPickupAndDrop / 15;
+
+                // when taxi will be free next
+                nextFreeTime = dropTime;
+
+                // taxi will be at drop point after trip
+                nextSpot = dropPoint;
+
+                // creating trip detail
+                tripDetail = customerId
+                        + "         | "
+                        + customerId
+                        + "          | "
+                        + pickupPoint
+                        + "    | "
+                        + dropPoint
+                        + "  | "
+                        + pickupTime
+                        + "          | "
+                        + dropTime
+                        + "       | "
+                        + earning
+                        + "    |";
             }
-            shortestDistance = Math.abs(taxi[taxiId].currentPosition - pickupPoint);
         }
-        if (shortestDistance != 6) {
-            taxi[taxiId2].departureTime(pickupPoint, dropPoint, pickupTime);
-            taxi[taxiId2].currentPosition = dropPoint;
-            taxiNo = taxiId2;
-            return taxiNo;
+
+        // setting corresponding details to alloted taxi
+        bookedTaxi.setDetails(true, nextSpot, nextFreeTime, earning, tripDetail);
+
+        // Booked Successfully
+        System.out.println("Taxi - " + bookedTaxi.id + " booked");
+    }
+
+    /*
+     * Implementation of createTaxi() function
+     */
+
+    public static List<Taxi> createTaxis(int noOfTaxis) {
+        List<Taxi> taxis = new ArrayList<>();
+        // create taxis
+        for (int i = 1; i <= noOfTaxis; i++) {
+            Taxi taxi = new Taxi();
+            taxis.add(taxi);
         }
-        return -1;
+        return taxis;
+    }
+
+    /*
+     * Implementation of getFreeTaxis() function
+     */
+    public static List<Taxi> getFreeTaxis(List<Taxi> taxi, int pickupTime, char pickupPoint) {
+        List<Taxi> freeTaxis = new ArrayList<>();
+        for (Taxi t : taxi) {
+            if (t.freeTime <= pickupTime
+                    && Math.abs((t.currentSpot - '0') - (pickupPoint - '0')) <= pickupTime - t.freeTime) {
+                freeTaxis.add(t);
+            }
+        }
+        return freeTaxis;
     }
 }
