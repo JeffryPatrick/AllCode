@@ -1,4 +1,4 @@
-package ApplicationSystem;
+package ApplicationSystem.CallTaxiBookingSystem;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,65 +14,66 @@ public class CallTaxiBookingSystem extends Booking {
     public static void main(String[] args) {
 
         System.out.println("-----Call Taxi Booking System-----");
-        Scanner s = new Scanner(System.in);
-        int noOfTaxis;
-        System.out.println("Enter the No of Taxis : ");
-        noOfTaxis = s.nextInt();
-        // create 4 taxis
-        List<Taxi> taxis = createTaxis(noOfTaxis);
+        try (Scanner s = new Scanner(System.in)) {
+            int noOfTaxis;
+            System.out.println("Enter the No of Taxis : ");
+            noOfTaxis = s.nextInt();
+            // create 4 taxis
+            List<Taxi> taxis = createTaxis(noOfTaxis);
 
-        int id = 1;
+            int id = 1;
 
-        while (true) {
-            System.out.println("---------------------------");
-            System.out.println("1. Book Taxi");
-            System.out.println("2. Print Taxi Details");
-            System.out.println("3. Exit");
-            System.out.println("---------------------------");
-            int choice = s.nextInt();
+            while (true) {
+                System.out.println("---------------------------");
+                System.out.println("1. Book Taxi");
+                System.out.println("2. Print Taxi Details");
+                System.out.println("3. Exit");
+                System.out.println("---------------------------");
+                int choice = s.nextInt();
 
-            switch (choice) {
-                case 1:
-                    // Get details from customers
-                    int customerId = id;
-                    System.out.println("Enter Pickup Point : ");
-                    char pickupPoint = s.next().charAt(0);
-                    System.out.println("Enter Drop Point : ");
-                    char dropPoint = s.next().charAt(0);
-                    System.out.println("Enter Pickup Time : ");
-                    int pickupTime = s.nextInt();
+                switch (choice) {
+                    case 1:
+                        // Get details from customers
+                        int customerId = id;
+                        System.out.println("Enter Pickup Point : ");
+                        char pickupPoint = s.next().charAt(0);
+                        System.out.println("Enter Drop Point : ");
+                        char dropPoint = s.next().charAt(0);
+                        System.out.println("Enter Pickup Time : ");
+                        int pickupTime = s.nextInt();
 
-                    // check if pickup and drop point are valid
-                    if (pickupPoint < 'A' || dropPoint > 'F' || pickupPoint > 'F' || dropPoint < 'A') {
-                        System.out.println("Valid pickup and drop are A, B, C, D, E, F : ");
+                        // check if pickup and drop point are valid
+                        if (pickupPoint < 'A' || dropPoint > 'F' || pickupPoint > 'F' || dropPoint < 'A') {
+                            System.out.println("Valid pickup and drop are A, B, C, D, E, F : ");
+                            return;
+                        }
+
+                        // get all free taxis that can reach customer on or before pickup time
+                        List<Taxi> freeTaxis = getFreeTaxis(taxis, pickupTime, pickupPoint);
+
+                        // no free taxi means we cannot alloct, so Exit!
+                        if (freeTaxis.size() == 0) {
+                            System.out.println("Sorry, No Taxi is Alloted. Exiting");
+                            return;
+                        }
+
+                        // sort taxis based on earnings
+                        Collections.sort(freeTaxis, (a, b) -> a.totalEarnings - b.totalEarnings);
+
+                        // get free Taxi nearest to us
+                        bookTaxi(customerId, pickupPoint, dropPoint, pickupTime, freeTaxis);
+                        id++;
+                        break;
+                    case 2:
+                        for (Taxi taxi : taxis) {
+                            taxi.printDetails();
+                        }
+                        break;
+                    case 3:
                         return;
-                    }
-
-                    // get all free taxis that can reach customer on or before pickup time
-                    List<Taxi> freeTaxis = getFreeTaxis(taxis, pickupTime, pickupPoint);
-
-                    // no free taxi means we cannot alloct, so Exit!
-                    if (freeTaxis.size() == 0) {
-                        System.out.println("Sorry, No Taxi is Alloted. Exiting");
-                        return;
-                    }
-
-                    // sort taxis based on earnings
-                    Collections.sort(freeTaxis, (a, b) -> a.totalEarnings - b.totalEarnings);
-
-                    // get free Taxi nearest to us
-                    bookTaxi(customerId, pickupPoint, dropPoint, pickupTime, freeTaxis);
-                    id++;
-                    break;
-                case 2:
-                    for (Taxi taxi : taxis) {
-                        taxi.printDetails();
-                    }
-                    break;
-                case 3:
-                    return;
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
         }
     }

@@ -1,0 +1,49 @@
+html,
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5e8ba;
+  display: flex;
+  justify-content: center;
+}
+
+#container {
+  margin-top: 75px;
+  height: 500px;
+  width: 400px;
+  background-color: #1f2029;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+}
+
+#container h1 {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  color: #ffeba7;
+}
+
+#input {
+  border-radius: 5px;
+  border-style: none;
+  margin-top: 30px;
+  height: 2.5em;
+  width: 250px;
+  padding-left: 10px;
+}
+
+#input:active {
+  border: none;
+}
+
+#add {
+  border-radius: 5px;
+  border-style: none;
+  background-color: #ffeba7;
+  height: 2.5em;
+  font-weight: bold;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
