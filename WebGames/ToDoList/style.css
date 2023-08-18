@@ -1,49 +1,80 @@
-html,
-body {
+* {
   margin: 0;
+  padding: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5e8ba;
-  display: flex;
-  justify-content: center;
+  box-sizing: border-box;
 }
 
-#container {
-  margin-top: 75px;
-  height: 500px;
-  width: 400px;
-  background-color: #1f2029;
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #110a46, #1d1576);
+  padding: 10px;
+}
+
+.todoapp {
+  width: 100%;
+  max-width: 540px;
+  background: #fff;
+  margin: 100px auto 20px;
+  padding: 40px 30px 70px;
   border-radius: 10px;
-  padding: 30px;
-  text-align: center;
 }
 
-#container h1 {
+.todoapp h2 {
+  color: #002765;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-h1 {
-  color: #ffeba7;
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #edeef0;
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 25px;
 }
 
-#input {
-  border-radius: 5px;
-  border-style: none;
-  margin-top: 30px;
-  height: 2.5em;
-  width: 250px;
-  padding-left: 10px;
-}
-
-#input:active {
+input {
+  flex: 1;
   border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px;
 }
 
-#add {
-  border-radius: 5px;
-  border-style: none;
-  background-color: #ffeba7;
-  height: 2.5em;
-  font-weight: bold;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+button {
+  border: none;
+  outline: none;
+  padding: 16px 50px;
+  background: #ff5945;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 40px;
+}
+
+ul li {
+  list-style: none;
+  font-size: 17px;
+  padding: 12px 8px 12px 50px;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+
+ul li ::before {
+  content: "";
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-image: url(images/Circle.png);
+  background-size: cover;
+  background-position: center;
+  top: 12px;
+  left: 8px;
 }

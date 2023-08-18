@@ -1,0 +1,28 @@
+Write an application for Railway ticket Reservation System. The application should have four functionalities
+
+1. Book
+2. Cancel
+3. Print booked tickets
+4. Print available tickets 
+
+
+Conditions for booking:
+
+1. There are total of 66 berths for 63 confirmed tickets, 18 RAC tickets and 10 tickets in waiting list.
+2. If the waiting list ticket count goes above 10, print as "No tickets available".
+3. The following passenger details should be obtained from user.
+    Name
+    Age
+    Berth Preference
+
+Conditions for cancelling:
+
+1. whenever a ticket is cancelled, A ticket from RAC should be confirmed and a waiting list ticket should move to RAC.
+
+Conditions for printing booked tickets:
+
+1. Print all the tickets that are filled along with the passenger details.
+
+Conditions for printing available tickets:
+
+1. Print all the tickets that are unoccupied
