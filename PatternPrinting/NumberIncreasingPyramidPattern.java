@@ -16,3 +16,13 @@ public class NumberIncreasingPyramidPattern {
         s.close();
     }
 }
+
+/* Number Increasing Pyramid Pattern */
+/*
+ * 1
+ * 12
+ * 123
+ * 1234
+ * 12345
+ * 123456
+ */

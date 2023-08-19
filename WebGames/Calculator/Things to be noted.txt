@@ -1,0 +1,11 @@
+eval() - function used to calculate the expression
+
+vh - Viewport Height
+
+display : flex
+align-items : center
+justify-contents : center
+
+box-shadow: -8px -8px 15px rgb(255, 255, 255, 0.1),5px 5px 15px rgb(0, 0, 0, 0.1); - used for shadow effect
+
+slice() - function used to 

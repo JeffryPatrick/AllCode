@@ -23,3 +23,13 @@ public class SquareHollowPattern {
     }
 
 }
+
+/* Square Hollow Pattern */
+/*
+ * ******
+ * * *
+ * * *
+ * * *
+ * * *
+ * ******
+ */

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import LeetCode.*;
 
@@ -98,6 +99,7 @@ public class Main {
         // }
         // System.out.println();
         // }
+
         // int d = 4658;
         // String q = String.valueOf(d);
         // int e = 8563 + Integer.parseInt(q);
@@ -281,8 +283,6 @@ public class Main {
          * 
          */
 
-        
-
         // if (ar[mid] > target) {
         // high = mid - 1;
         // } else if (ar[mid] < target) {
@@ -293,10 +293,59 @@ public class Main {
         // }
         // System.out.println(low);
 
-        String s = "A man, a plan, a canal: Panama";
-        s = s.toLowerCase();
-        String ans = "";
-        Character.isAlphabetic('d');  
+        // String s = "A man, a plan, a canal: Panama";
+        // s = s.toLowerCase();
+        // String ans = "";
+        // Character.isAlphabetic('d');
+
+        // Zoho round 2
+        // int[] arr = { 2, 3, 4, 2, 2, 5, 5 };
+        // int count = 1;
+        // for (int i = 0; i < arr.length; i++) {
+        // if (arr[i] > 0) {
+        // for (int j = i + 1; j < arr.length; j++) {
+        // if (arr[i] == arr[j]) {
+        // count += 1;
+        // arr[j] = -1;
+        // }
+        // }
+        // if (i == 0) {
+        // System.out.print(arr[i] + "(" + count + ")");
+        // } else {
+        // System.out.print(", " + arr[i] + "(" + count + ")");
+        // }
+        // }
+        // count = 1;
+        // }
+
+        // int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        // // for odd index
+        // for (int i = 0; i < arr.length; i += 2) {
+        //     for (int j = i + 2; j < arr.length; j += 2) {
+        //         if (arr[i] > arr[j]) {
+        //             int temp = arr[i];
+        //             arr[i] = arr[j];
+        //             arr[j] = temp;
+        //         }
+        //     }
+        // }
+        // // for even index
+        // for (int i = 1; i < arr.length; i += 2) {
+        //     for (int j = i + 2; j < arr.length; j += 2) {
+        //         if (arr[i] < arr[j]) {
+        //             int temp = arr[i];
+        //             arr[i] = arr[j];
+        //             arr[j] = temp;
+        //         }
+        //     }
+        // }
+        // for (int i = 0; i < arr.length; i++) {
+        //     System.out.print(arr[i] + " ");
+        // }
+
+        
+
+        
     }
 
     public static boolean pal(String s) {

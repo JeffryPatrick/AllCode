@@ -1,0 +1,21 @@
+canvas tag used for drawing graphics via javascript
+
+context - used to get from the canvas for drawing or placing the content inside the canvas
+
+Array - used to store the coordinates of the snake position
+
+foodunit - 25
+
+spaceBar keycode - 32 used to start the game
+
+fillStyle property used to fill the color of canvas
+
+fillRect() method used to draw rectangle shape
+
+setTimeOut() - used to calls a function after a number of milliseconds, 
+it is executed only once
+
+random() - used to show the food in random place
+
+
+
