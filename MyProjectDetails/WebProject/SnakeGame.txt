@@ -1,0 +1,28 @@
+This is a Simple Snake game.
+
+Notable things:
+
+1. canvas tag used for drawing graphics via javascript
+
+2. context - used to get from the canvas for drawing or placing the content inside the canvas
+
+3. Array - used to store the coordinates of the snake position
+
+4. foodunit - 25
+
+5. spaceBar keycode - 32 used to start the game
+
+6. fillStyle property used to fill the color of canvas
+
+7. fillRect() method used to draw rectangle shape
+
+8. setTimeOut() - used to calls a function after a number of milliseconds, it is executed only once
+
+9. random() - used to show the food in random place
+
+10. unshift() - used to insert the new element in start of the array
+
+11. pop() - returns the last element of the array
+
+
+

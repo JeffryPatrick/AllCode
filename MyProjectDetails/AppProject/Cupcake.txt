@@ -1,0 +1,28 @@
+This app is build based on the concept of multiple screen and navigation component
+
+Jetpack compose toolkit used for UI - modern UI toolkit which is replacement for XML based apps
+
+Advantages: 
+    1. Less no of Code and ignorance of XML files
+    2. Declarative types - means all UI elements are created by calling corresponding functions
+    3. These functions are called as composables
+    4. No need for finding the id of elements and separate event listeners
+
+Disadvantages:
+    1. UI rendering speed is slow compared to XML
+    2. To use this, dev need to learn new language "Kotlin" for using the Jetpack Compose
+    3. But, if the dev knows java, then it could be easy to learn Kotlin
+
+Main composables and API used in this app
+
+1. NavHost -> used to display other composable destinations, based on a given route.
+2. Context -> an abstract class whose implementation is provided by the Android System, allows access
+              to application-specific resources.
+3. NavController -> the central API for the Navigation component. It keeps track 
+                    of the back stack of composables that make up the screens in your app and 
+                    the state of each screen.
+4. ShareSheet -> user interface component that covers the bottom part of the screen - that shows sharing options
+5. Intent -> It is a system to perform some action, commonly presenting a new activity. To send any data 
+             we use ACTION_SEND
+
+

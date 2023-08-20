@@ -1,0 +1,19 @@
+In my college for Mini Project, we developed a website for Home Automation Guidance.
+
+We have used the fundamental concepts of Web development and for Styling purpose we used BootStrap FrameWork.
+
+The idea of the project is to give a clear understanding on Home Automation and the information
+of the products that are used.
+
+We have developed four basic modules they are,
+    1. Smart
+    2. Concepts
+    3. Support
+    4. Shop
+
+First two modules, we feed the general information about Automation Concepts.
+
+In Support module, we give technical knowledge about Automation with images and video tutorials.
+
+At last, Shop module shows the product, which are available in the E-Commerce Website.
+

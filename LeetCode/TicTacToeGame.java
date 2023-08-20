@@ -82,7 +82,7 @@ public class TicTacToeGame {
             board[i] = String.valueOf(i + 1);
         }
 
-        System.out.println("Welcome to Great TicTacToe Game");
+        System.out.println("Welcome to TicTacToe Game");
         ticTacToeBoard();
 
         System.out.println("X will play first. Enter a slot number to place X in : ");

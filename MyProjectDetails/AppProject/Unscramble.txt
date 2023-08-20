@@ -1,0 +1,22 @@
+This app is build based on the concept of App Architecture and viewmodel
+
+Most Common Architectural Principles:
+1. Separation of Concerns - the app is divided into classes of functions, each with separate responsibilities.
+2. Drive UI from a model - Models are components responsible for handling the data for an app. They are 
+                           independent from the UI elements and app components.
+
+Recommended App Architecture:
+1. UI Layer - UI elements(JP toolkit) + State Holders(viewmodel)
+2. Date Layer - it stores, retrives and exposes the app data.
+
+ViewModel: 
+    1. A component that holds and exposes the state the UI consumes.
+    2. It lets your app to follow Architecture Principle of driving data from a model.
+    3. It stores the app-related data that isn't destroyed when the activity is destroyed and recreated by Android Framework.
+    4. The app automatically retains VM obj during configuration changes.
+    5. To implement ViewModel extend ViewModel class.
+
+UDF pattern:   
+    1. Unidirectional Data Flow - here state flows down and event flow up.
+    2. We can decouple composables that display state in the UI.
+    3. UI update loop - Event -> update state -> display state
